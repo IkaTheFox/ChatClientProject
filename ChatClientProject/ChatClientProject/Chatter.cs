@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectS7
+namespace ChatClientProject
 {
     public class Chatter
     {
@@ -45,9 +45,18 @@ namespace ProjectS7
             this.Nickname = nick;
             this.auth = authNumber;
         }
-        public string ToString()
+       
+        override public string ToString()
         {
             return this.Nickname;
+
+        }
+    }
+    public class TextChatter : Chatter
+    {
+        public TextChatter(string nick) : base(nick)
+        {
+
         }
     }
 }

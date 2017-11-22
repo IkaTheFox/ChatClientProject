@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ProjectS7
+namespace ChatClientProject
 {
     class ChatRoom
     {
+
         private int roomNumber;
         static private int roomCount;
         private List<Chatter> usrList;
