@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ChatClientProject
 {
-    public class Chatter
+    public class Chatter : ChatterInterface
     {
         private string nickname;
         private int auth;
         private static int number_of_users = 0;
 
-        public string Nickname
+        public string Alias
         {
             get
             {
@@ -36,21 +36,37 @@ namespace ChatClientProject
 
         public Chatter(string nick)
         {
-            this.Nickname = nick;
+            this.Alias = nick;
             this.auth = number_of_users;
             number_of_users++;
         }
         public Chatter(int authNumber, string nick)
         {
-            this.Nickname = nick;
+            this.Alias = nick;
             this.auth = authNumber;
+            number_of_users++;
         }
        
         override public string ToString()
         {
-            return this.Nickname;
+            return this.Alias;
 
         }
+        public void receiveAMessage(String message, Chatter sender)
+        {
+            System.Console.WriteLine("TODO receive a message : Chatter");
+        }
+        /*public bool Equals(Chatter chatter)
+        {
+            if(chatter.Alias == this.Alias)
+            {
+                if(chatter.Auth == this.Auth)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }*/
     }
     public class TextChatter : Chatter
     {

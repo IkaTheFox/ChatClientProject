@@ -1,1 +1,6 @@
 C:\Users\IKA\Documents\EFREI S7\C# & .NET\ChatClientProject\ChatClientProject\ChatClientProject\bin\Debug\WindowsApplication.exe.config
+C:\Users\IKA\Documents\EFREI S7\C# & .NET\ChatClientProject\ChatClientProject\ChatClientProject\obj\x86\Debug\ChatClientProject.csprojResolveAssemblyReference.cache
+C:\Users\IKA\Documents\EFREI S7\C# & .NET\ChatClientProject\ChatClientProject\ChatClientProject\bin\Debug\WindowsApplication.exe
+C:\Users\IKA\Documents\EFREI S7\C# & .NET\ChatClientProject\ChatClientProject\ChatClientProject\bin\Debug\WindowsApplication.pdb
+C:\Users\IKA\Documents\EFREI S7\C# & .NET\ChatClientProject\ChatClientProject\ChatClientProject\obj\x86\Debug\WindowsApplication.exe
+C:\Users\IKA\Documents\EFREI S7\C# & .NET\ChatClientProject\ChatClientProject\ChatClientProject\obj\x86\Debug\WindowsApplication.pdb
