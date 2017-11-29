@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace ChatClientProject
 {
-    class ChatRoom
+    public class ChatRoom : ChatRoomInterface
     {
-
+        
+        static Chatter chatbot = new Chatter(0,"Chat Bot");
         private int roomNumber;
         static private int roomCount;
         private List<Chatter> usrList;
-        private string topic;
-        public delegate void Handler(object sender, msg m);
-        public event Handler msgHandler;
+        private String topic;
 
         public string Topic
         {
@@ -23,25 +22,24 @@ namespace ChatClientProject
             {
                 return topic;
             }
-
-            set
-            {
-                topic = value;
-            }
         }
+
+        public delegate void Handler(object sender, msg m);
+        public event Handler msgHandler;
+        
 
         protected virtual void onMsgReceive(object sender, msg m)
         {
             if (msgHandler != null)
             {
-                System.Console.WriteLine("Subscription found");
+                //System.Console.WriteLine("Subscription found");
                 msgHandler(sender, m);
             }
         }
 
         public void RaiseMsgReceive(msg Message)
         {
-            System.Console.WriteLine("Raising msg event");
+            //System.Console.WriteLine("Raising msg event");
             onMsgReceive(this, Message);
         }
 
@@ -53,19 +51,26 @@ namespace ChatClientProject
             msgHandler += new Handler(msgReceived);
         }
 
+        public ChatRoom(String topic)
+        {
+            roomCount++;
+            this.roomNumber = roomCount;
+            usrList = new List<Chatter>();
+            msgHandler += new Handler(msgReceived);
+            this.topic = topic;
+        }
+
         public bool join(Chatter joining_user)
         {
-            foreach (Chatter usr in usrList)
+            if (usrList.Contains(joining_user))
             {
-                if (usr.Nickname == joining_user.Nickname)
-                {
-                    return false;
-                }
+                return false;
             }
             usrList.Add(joining_user);
             //myDelegateClass = Handler
             //MyDel = msgHandler
             //HEREBY subscription
+            post("(Message from Chatroom : "+Topic+") "+joining_user+" has joined the room.", chatbot);
             return true;
         }
 
@@ -77,11 +82,18 @@ namespace ChatClientProject
 
         public void msgReceived(object sender, msg m)
         {
-            System.Console.WriteLine(m.Sender.ToString() + " > " + m.Message);
+            if (chatbot.Equals(m.Sender))
+            {
+                System.Console.WriteLine(m.Message);
+            }
+            else
+            {
+                System.Console.WriteLine(m.Sender.ToString() + " > " + m.Message);
+            }
         }
-        public void sendMsg(Chatter sender, string message)
+        public void post(string message, Chatter sender)
         {
-            msg packet = new msg(sender, message);
+            msg packet = new msg(message,sender);
             RaiseMsgReceive(packet);
         }
 
@@ -91,7 +103,7 @@ namespace ChatClientProject
         Chatter sender;
         string message;
 
-        internal Chatter Sender
+        public Chatter Sender
         {
             get
             {
@@ -106,7 +118,7 @@ namespace ChatClientProject
                 return message;
             }
         }
-        public msg(Chatter sender, string message) : base()
+        public msg(string message, Chatter sender) : base()
         {
             this.sender = sender;
             this.message = message;
