@@ -103,7 +103,7 @@ namespace ChatClientProject
         Chatter sender;
         string message;
 
-        internal Chatter Sender
+        public Chatter Sender
         {
             get
             {
